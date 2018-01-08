@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata minClientVersion="2.8.1">
+    <id>Xam.Plugins.OnDeviceCustomVision</id>
+    <version>$version$</version>
+    <title>Plugin for running Custom Vision models on device in iOS and Android Xamarin apps</title>
+    <authors>Jim Bennett</authors>
+    <owners>Jim Bennett</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      The Azure Custom Vision service (https://customvision.ai) is able to create models that can be exported as CoreML or Tensorflow models to do image classification.
+
+      This plugin makes it easy to download and use these models offline from inside your mobile app, using CoreML on iOS or Tensorflow on Android.
+      These models can then be called from a .NET standard library or PCL, using something like Xam.Plugin.Media to take photos for classification.
+    </description>
+    <summary>Cross platform library that allows you to use models from the https://CustomVision.ai locally on the device</summary>
+    <tags>xamarin, image classification, AI, ML, custom vision, pcl, xam.pcl, plugin for xamarin, plugin, android, xamarin.forms, ios, monoandroid, monodroid, monotouch</tags>
+
+  </metadata>
+
+  <files>
+    <!--NetStandard/PCL-->
+    <file src="../Xam.Plugin.OnDeviceCustomVision/bin/Release/netstandard1.0/Xam.Plugin.OnDeviceCustomVision.dll" target="lib/netstandard1.0" />
+    
+    <!--Xamarin.Android-->
+    <file src="../Xam.Plugin.OnDeviceCustomVision.Droid/bin/Release/Xam.Plugin.OnDeviceCustomVision.dll" target="lib/MonoAndroid10" />
+    <file src="../Xam.Plugin.OnDeviceCustomVision.Droid/bin/Release/TensorFlowXamarin.dll" target="lib/MonoAndroid10" />
+    
+    <!--Xamarin.iOS -->
+    <file src="../Xam.Plugin.OnDeviceCustomVision.iOS/bin/Release/Xam.Plugin.OnDeviceCustomVision.dll" target="lib/Xamarin.iOS10" />
+
+  </files>
+</package>
