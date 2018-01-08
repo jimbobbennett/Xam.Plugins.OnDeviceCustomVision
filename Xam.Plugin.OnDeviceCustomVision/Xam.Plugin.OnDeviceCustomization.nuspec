@@ -7,6 +7,8 @@
     <authors>Jim Bennett</authors>
     <owners>Jim Bennett</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.githubusercontent.com/jimbobbennett/Xam.Plugin.OnDeviceCustomVision/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/jimbobbennett/Xam.Plugin.OnDeviceCustomVision</projectUrl>
     <description>
       The Azure Custom Vision service (https://customvision.ai) is able to create models that can be exported as CoreML or Tensorflow models to do image classification.
 

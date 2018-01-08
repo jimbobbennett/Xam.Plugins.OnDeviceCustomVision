@@ -33,6 +33,10 @@ namespace Xam.Plugin.OnDeviceCustomVision
 
     public static class CrossImageClassifier
     {
+#if !NETSTANDARD1_0
+        private static ImageClassifierImplementation _implementation;
+#endif
+
         public static IImageClassifier Current
         {
             get
@@ -40,7 +44,7 @@ namespace Xam.Plugin.OnDeviceCustomVision
 #if NETSTANDARD1_0
                 throw new NotImplementedException("Please ensure you have install the Xam.Plugin.OnDeviceCustomVision NuGet package into your iOS and Android projects");
 #else
-                return new ImageClassifierImplementation();
+                return _implementation ?? (_implementation = new ImageClassifierImplementation());
 #endif
             }
         }
