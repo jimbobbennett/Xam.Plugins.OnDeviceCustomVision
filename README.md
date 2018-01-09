@@ -9,6 +9,13 @@ This plugin makes it easy to download and use these models offline from inside y
 * Available on NuGet: https://www.nuget.org/packages/Xam.Plugins.OnDeviceCustomVision/ [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.OnDeviceCustomVision.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.OnDeviceCustomVision/)
 * Install into your PCL/.NET Standard project and iOS and Android client projects.
 
+#### Platform Support
+
+|Platform|Version|
+| ------------------- | :------------------: |
+|Xamarin.iOS|iOS 11+|
+|Xamarin.Android|API 21+|
+
 #### Usage
 
 Before you can use this API, you need to initialise it with the model file downloaded from CustomVision.
