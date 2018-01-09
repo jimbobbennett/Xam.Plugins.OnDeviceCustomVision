@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Xam.Plugin.OnDeviceCustomVision
+namespace Xam.Plugins.OnDeviceCustomVision
 {
     public struct ImageClassification
     {
@@ -42,7 +42,7 @@ namespace Xam.Plugin.OnDeviceCustomVision
             get
             {
 #if NETSTANDARD1_0
-                throw new NotImplementedException("Please ensure you have install the Xam.Plugin.OnDeviceCustomVision NuGet package into your iOS and Android projects");
+                throw new NotImplementedException("Please ensure you have install the Xam.Plugins.OnDeviceCustomVision NuGet package into your iOS and Android projects");
 #else
                 return _implementation ?? (_implementation = new ImageClassifierImplementation());
 #endif

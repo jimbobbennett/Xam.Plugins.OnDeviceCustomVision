@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-  </PropertyGroup>
-
-  <Import Project="..\Xam.Plugin.OnDeviceCustomVision.Shared\Xam.Plugin.OnDeviceCustomVision.Shared.projitems" Label="Shared" Condition="Exists('..\Xam.Plugin.OnDeviceCustomVision.Shared\Xam.Plugin.OnDeviceCustomVision.Shared.projitems')" />
-</Project>

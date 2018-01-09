@@ -1,15 +1,15 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.OnDeviceCustomVision", "Xam.Plugin.OnDeviceCustomVision\Xam.Plugin.OnDeviceCustomVision.csproj", "{DFEA14A9-5F1A-48E5-B40A-820B02153597}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugins.OnDeviceCustomVision", "Xam.Plugins.OnDeviceCustomVision\Xam.Plugins.OnDeviceCustomVision.csproj", "{DFEA14A9-5F1A-48E5-B40A-820B02153597}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TensorFlowXamarin", "TensorFlow.Xamarin.Android\TensorFlowXamarin\TensorFlowXamarin.csproj", "{1557F11A-244E-4DCF-BB90-B01C916E84E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.OnDeviceCustomVision.Droid", "Xam.Plugin.OnDeviceCustomVision.Droid\Xam.Plugin.OnDeviceCustomVision.Droid.csproj", "{9FDA0172-09F3-43C1-9F84-8E8A74AB2E97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugins.OnDeviceCustomVision.Droid", "Xam.Plugins.OnDeviceCustomVision.Droid\Xam.Plugins.OnDeviceCustomVision.Droid.csproj", "{9FDA0172-09F3-43C1-9F84-8E8A74AB2E97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.OnDeviceCustomVision.iOS", "Xam.Plugin.OnDeviceCustomVision.iOS\Xam.Plugin.OnDeviceCustomVision.iOS.csproj", "{2910106C-7EE9-445B-A4AD-6C543ACF41AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugins.OnDeviceCustomVision.iOS", "Xam.Plugins.OnDeviceCustomVision.iOS\Xam.Plugins.OnDeviceCustomVision.iOS.csproj", "{2910106C-7EE9-445B-A4AD-6C543ACF41AE}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xam.Plugin.OnDeviceCustomVision.Shared", "Xam.Plugin.OnDeviceCustomVision.Shared\Xam.Plugin.OnDeviceCustomVision.Shared.shproj", "{B3F85494-A9F5-4A3A-BE59-39E6A311FA55}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xam.Plugins.OnDeviceCustomVision.Shared", "Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.shproj", "{B3F85494-A9F5-4A3A-BE59-39E6A311FA55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

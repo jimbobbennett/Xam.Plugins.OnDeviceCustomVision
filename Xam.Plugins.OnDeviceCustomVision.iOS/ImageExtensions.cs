@@ -5,7 +5,7 @@ using CoreVideo;
 using Foundation;
 using UIKit;
 
-namespace Xam.Plugin.OnDeviceCustomVision.iOS
+namespace Xam.Plugins.OnDeviceCustomVision.iOS
 {
     public static class ImageExtensions
     {

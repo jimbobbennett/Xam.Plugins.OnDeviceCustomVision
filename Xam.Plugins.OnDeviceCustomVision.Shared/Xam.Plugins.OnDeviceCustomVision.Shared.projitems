@@ -6,7 +6,7 @@
     <SharedGUID>{B3F85494-A9F5-4A3A-BE59-39E6A311FA55}</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Xam.Plugin.OnDeviceCustomVision.Shared</Import_RootNamespace>
+    <Import_RootNamespace>Xam.Plugins.OnDeviceCustomVision.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CrossImageClassifier.cs" />

@@ -8,9 +8,9 @@ using CoreML;
 using Foundation;
 using UIKit;
 using Vision;
-using Xam.Plugin.OnDeviceCustomVision.iOS;
+using Xam.Plugins.OnDeviceCustomVision.iOS;
 
-namespace Xam.Plugin.OnDeviceCustomVision
+namespace Xam.Plugins.OnDeviceCustomVision
 {
     public class ImageClassifierImplementation : IImageClassifier
     {

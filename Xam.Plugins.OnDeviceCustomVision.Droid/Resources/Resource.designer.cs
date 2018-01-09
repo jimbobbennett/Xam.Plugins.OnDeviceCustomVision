@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Xam.Plugin.OnDeviceCustomVision.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Xam.Plugins.OnDeviceCustomVision.Resource", IsApplication=false)]
 
-namespace Xam.Plugin.OnDeviceCustomVision
+namespace Xam.Plugins.OnDeviceCustomVision
 {
 	
 	

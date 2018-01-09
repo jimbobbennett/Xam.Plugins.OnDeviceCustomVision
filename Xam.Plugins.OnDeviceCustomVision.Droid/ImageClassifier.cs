@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Android.Graphics;
 using Org.Tensorflow.Contrib.Android;
 
-namespace Xam.Plugin.OnDeviceCustomVision
+namespace Xam.Plugins.OnDeviceCustomVision
 {
     public class ImageClassifierImplementation : IImageClassifier
     {

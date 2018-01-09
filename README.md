@@ -2,7 +2,7 @@
 
 The [Azure Custom Vision service](https://customvision.ai) is able to create models that can be exported as CoreML or Tensorflow models to do image classification.
 
-This plugin makes it easy to download and use these models offline from inside your mobile app, using CoreML on iOS or Tensorflow on Android. These models can then be called from a .NET standard library or PCL, using something like Xam.Plugin.Media to take photos for classification.
+This plugin makes it easy to download and use these models offline from inside your mobile app, using CoreML on iOS or Tensorflow on Android. These models can then be called from a .NET standard library or PCL, using something like Xam.Plugins.Media to take photos for classification.
 
 #### Setup
 
@@ -66,7 +66,7 @@ To classify an image, call:
 var tags = await CrossImageClassifier.Current.ClassifyImage(stream);
 ```
 
-Passing in an image as a stream. You can use a library like [Xam.Plugin.Media](https://github.com/jamesmontemagno/MediaPlugin) to get an image as a stream from the camera or image library.
+Passing in an image as a stream. You can use a library like [Xam.Plugins.Media](https://github.com/jamesmontemagno/MediaPlugin) to get an image as a stream from the camera or image library.
 
 This will return a list of `ImageClassification` instances, one per tag in the model with the probabilty that the image matches that tag. Probabilities are doubles in the range of 0 - 1, with 1 being 100% probability that the image matches the tag. To find the most likely classification use:
 

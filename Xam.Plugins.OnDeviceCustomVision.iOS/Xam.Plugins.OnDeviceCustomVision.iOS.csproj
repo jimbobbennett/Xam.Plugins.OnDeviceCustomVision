@@ -6,8 +6,8 @@
     <ProjectGuid>{2910106C-7EE9-445B-A4AD-6C543ACF41AE}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Xam.Plugin.OnDeviceCustomVision</RootNamespace>
-    <AssemblyName>Xam.Plugin.OnDeviceCustomVision</AssemblyName>
+    <RootNamespace>Xam.Plugins.OnDeviceCustomVision</RootNamespace>
+    <AssemblyName>Xam.Plugins.OnDeviceCustomVision</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -56,6 +56,6 @@
     <Compile Include="ImageClassifier.cs" />
     <Compile Include="ImageExtensions.cs" />
   </ItemGroup>
-  <Import Project="..\Xam.Plugin.OnDeviceCustomVision.Shared\Xam.Plugin.OnDeviceCustomVision.Shared.projitems" Label="Shared" Condition="Exists('..\Xam.Plugin.OnDeviceCustomVision.Shared\Xam.Plugin.OnDeviceCustomVision.Shared.projitems')" />
+  <Import Project="..\Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.projitems" Label="Shared" Condition="Exists('..\Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
