@@ -4,6 +4,11 @@ The [Azure Custom Vision service](https://customvision.ai) is able to create mod
 
 This plugin makes it easy to download and use these models offline from inside your mobile app, using CoreML on iOS or Tensorflow on Android. These models can then be called from a .NET standard library or PCL, using something like Xam.Plugin.Media to take photos for classification.
 
+#### Setup
+
+* Available on NuGet: https://www.nuget.org/packages/Xam.Plugins.OnDeviceCustomVision/ [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.OnDeviceCustomVision.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.OnDeviceCustomVision/)
+* Install into your PCL/.NET Standard project and iOS and Android client projects.
+
 #### Usage
 
 Before you can use this API, you need to initialise it with the model file downloaded from CustomVision.
