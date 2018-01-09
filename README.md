@@ -46,7 +46,7 @@ Download the tensorflow model from Custom Vision. This will be a folder containi
 * `labels.txt`
 * `model.pb`
 
-Add both these files to the `Assets` folder in your Android app. Once this is added, add a call to `Init` to your main activity passing in the name of the model file:
+Add both these files to the `Assets` folder in your Android app. Once these are added, add a call to `Init` to your main activity passing in the name of the model file:
 
 ```cs
 protected override void OnCreate(Bundle savedInstanceState)
@@ -71,8 +71,8 @@ Passing in an image as a stream. You can use a library like [Xam.Plugins.Media](
 This will return a list of `ImageClassification` instances, one per tag in the model with the probabilty that the image matches that tag. Probabilities are doubles in the range of 0 - 1, with 1 being 100% probability that the image matches the tag. To find the most likely classification use:
 
 ```cs
-tags..OrderByDescending(t => t.Probability)
-     .First().Tag;
+tags.OrderByDescending(t => t.Probability)
+    .First().Tag;
 ```
 
 
