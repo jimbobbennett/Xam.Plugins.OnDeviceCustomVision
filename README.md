@@ -1,4 +1,4 @@
-# Xam.Plugin.OnDeviceCustomVision
+# Xam.Plugins.OnDeviceCustomVision
 
 The [Azure Custom Vision service](https://customvision.ai) is able to create models that can be exported as CoreML or Tensorflow models to do image classification.
 
@@ -6,7 +6,7 @@ This plugin makes it easy to download and use these models offline from inside y
 
 #### Setup
 
-* Available on NuGet: https://www.nuget.org/packages/Xam.Plugins.OnDeviceCustomVision/ [![NuGet](https://img.shields.io/nuget/v/Xam.Plugin.OnDeviceCustomVision.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugin.OnDeviceCustomVision/)
+* Available on NuGet: https://www.nuget.org/packages/Xam.Plugins.OnDeviceCustomVision/ [![NuGet](https://img.shields.io/nuget/v/Xam.Plugins.OnDeviceCustomVision.svg?label=NuGet)](https://www.nuget.org/packages/Xam.Plugins.OnDeviceCustomVision/)
 * Install into your PCL/.NET Standard project and iOS and Android client projects.
 
 #### Platform Support
