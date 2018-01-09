@@ -25,16 +25,16 @@ Before you can use this API, you need to initialise it with the model file downl
 Download the Core ML model from Custom Vision. Compile it using:
 
 ```bash
-xcrun coremlcompiler compile <model file name>.mlmodel <model name>.mlmodelc
+xcrun coremlcompiler compile <model_file_name>.mlmodel <model_name>.mlmodelc
 ```
 
-This will spit out a folder called `<model name>.mlmodelc` containing a number of files. Add this entire folder to the `Resources` folder in your iOS app. Once this has been added, add a call to `Init` to your app delegate, passing in the name of your compiled model (i.e. the name of the model folder __without__ `mlmodelc`):
+This will spit out a folder called `<model_name>.mlmodelc` containing a number of files. Add this entire folder to the `Resources` folder in your iOS app. Once this has been added, add a call to `Init` to your app delegate, passing in the name of your compiled model (i.e. the name of the model folder __without__ `mlmodelc`):
 
 ```cs
 public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 {
    ...
-   CrossImageClassifier.Current.Init("<model name>");
+   CrossImageClassifier.Current.Init("<model_name>");
    return base.FinishedLaunching(uiApplication, launchOptions);
 }
 ```
