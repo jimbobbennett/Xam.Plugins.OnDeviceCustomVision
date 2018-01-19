@@ -25,16 +25,16 @@ Before you can use this API, you need to initialise it with the model file downl
 Download the Core ML model from Custom Vision. Compile it using:
 
 ```bash
-xcrun coremlcompiler compile <model file name>.mlmodel <model name>.mlmodelc
+xcrun coremlcompiler compile <model_file_name>.mlmodel <model_name>.mlmodelc
 ```
 
-This will spit out a folder called `<model name>.mlmodelc` containing a number of files. Add this entire folder to the `Resources` folder in your iOS app. Once this has been added, add a call to `Init` to your app delegate, passing in the name of your compiled model (i.e. the name of the model folder __without__ `mlmodelc`):
+This will spit out a folder called `<model_name>.mlmodelc` containing a number of files. Add this entire folder to the `Resources` folder in your iOS app. Once this has been added, add a call to `Init` to your app delegate, passing in the name of your compiled model (i.e. the name of the model folder __without__ `mlmodelc`):
 
 ```cs
 public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
 {
    ...
-   CrossImageClassifier.Current.Init("<model name>");
+   CrossImageClassifier.Current.Init("<model_name>");
    return base.FinishedLaunching(uiApplication, launchOptions);
 }
 ```
@@ -46,7 +46,7 @@ Download the tensorflow model from Custom Vision. This will be a folder containi
 * `labels.txt`
 * `model.pb`
 
-Add both these files to the `Assets` folder in your Android app. Once this is added, add a call to `Init` to your main activity passing in the name of the model file:
+Add both these files to the `Assets` folder in your Android app. Once these are added, add a call to `Init` to your main activity passing in the name of the model file:
 
 ```cs
 protected override void OnCreate(Bundle savedInstanceState)
@@ -71,8 +71,8 @@ Passing in an image as a stream. You can use a library like [Xam.Plugins.Media](
 This will return a list of `ImageClassification` instances, one per tag in the model with the probabilty that the image matches that tag. Probabilities are doubles in the range of 0 - 1, with 1 being 100% probability that the image matches the tag. To find the most likely classification use:
 
 ```cs
-tags..OrderByDescending(t => t.Probability)
-     .First().Tag;
+tags.OrderByDescending(t => t.Probability)
+    .First().Tag;
 ```
 
 
