@@ -36,8 +36,6 @@ namespace Xam.Plugins.OnDeviceCustomVision
 
         private async Task<IReadOnlyList<ImageClassification>> Classify(UIImage source)
         {
-            var requestHandler = new VNImageRequestHandler(source.ToCVPixelBuffer(_targetImageSize), new NSDictionary());
-
             var tcs = new TaskCompletionSource<IEnumerable<ImageClassification>>();
 
             var request = new VNCoreMLRequest(_model, (response, e) => 
@@ -51,7 +49,11 @@ namespace Xam.Plugins.OnDeviceCustomVision
                 }
             });
 
+            var buffer = source.ToCVPixelBuffer(_targetImageSize);
+            var requestHandler = new VNImageRequestHandler(buffer, new NSDictionary());
+
             requestHandler.Perform(new[] { request }, out NSError error);
+
             var classifications = await tcs.Task;
 
             if (error != null)

@@ -14,10 +14,6 @@ namespace Xam.Plugins.OnDeviceCustomVision
         private TensorFlowInferenceInterface _inferenceInterface;
 
         private static readonly int InputSize = 227;
-        private static readonly float ImageMeanR = 124.0f;
-        private static readonly float ImageMeanG = 117.0f;
-        private static readonly float ImageMeanB = 105.0f;
-        private static readonly float ImageStd = 1.0f;
         private static readonly string InputName = "Placeholder";
         private static readonly string OutputName = "loss";
 
@@ -65,38 +61,19 @@ namespace Xam.Plugins.OnDeviceCustomVision
 
         public List<ImageClassification> RecognizeImage(Bitmap bitmap)
         {
-            var ggg = new int[bitmap.Width * bitmap.Height];
-            bitmap.GetPixels(ggg, 0, bitmap.Width, 0, 0, bitmap.Width, bitmap.Height);
+            var outputNames = new[] { OutputName };
+            var floatValues = bitmap.GetBitmapPixels(InputSize, InputSize);
+            var outputs = new float[_labels.Count];
 
-            using (var resizedBitmap = Bitmap.CreateScaledBitmap(bitmap, InputSize, InputSize, false).Copy(Bitmap.Config.Argb8888, false))
-            {
-                var outputNames = new[] { OutputName };
-                var intValues = new int[InputSize * InputSize];
-                var floatValues = new float[InputSize * InputSize * 3];
-                var outputs = new float[_labels.Count];
+            _inferenceInterface.Feed(InputName, floatValues, 1, InputSize, InputSize, 3);
+            _inferenceInterface.Run(outputNames);
+            _inferenceInterface.Fetch(OutputName, outputs);
 
-                resizedBitmap.GetPixels(intValues, 0, resizedBitmap.Width, 0, 0, resizedBitmap.Width, resizedBitmap.Height);
-                resizedBitmap.Recycle();
+            var results = new List<ImageClassification>();
+            for (var i = 0; i < outputs.Length; ++i)
+                results.Add(new ImageClassification(_labels[i], outputs[i]));
 
-                for (int i = 0; i < intValues.Length; ++i)
-                {
-                    var val = intValues[i];
-
-                    floatValues[i * 3 + 0] = ((val & 0xFF) - ImageMeanB) / ImageStd;
-                    floatValues[i * 3 + 1] = (((val >> 8) & 0xFF) - ImageMeanG) / ImageStd;
-                    floatValues[i * 3 + 2] = (((val >> 16) & 0xFF) - ImageMeanR) / ImageStd;
-                }
-
-                _inferenceInterface.Feed(InputName, floatValues, 1, InputSize, InputSize, 3);
-                _inferenceInterface.Run(outputNames);
-                _inferenceInterface.Fetch(OutputName, outputs);
-
-                var results = new List<ImageClassification>();
-                for (var i = 0; i < outputs.Length; ++i)
-                    results.Add(new ImageClassification(_labels[i], outputs[i]));
-
-                return results;
-            }
+            return results;
         }
     }
 }
