@@ -8,7 +8,7 @@ using Org.Tensorflow.Contrib.Android;
 
 namespace Xam.Plugins.OnDeviceCustomVision
 {
-    public class ImageClassifierImplementation : IImageClassifier
+    public class ImageClassifierImplementation : ImageClassifierBase
     {
         private List<string> _labels;
         private TensorFlowInferenceInterface _inferenceInterface;
@@ -17,7 +17,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
         private static readonly string InputName = "Placeholder";
         private static readonly string OutputName = "loss";
 
-        public async Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream)
+        public override async Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream)
         {
             if (_labels == null || !_labels.Any() || _inferenceInterface == null)
                 throw new ImageClassifierException("You must call Init before classifying images");
@@ -37,10 +37,9 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public void Init(string modelName)
+        public override void Init(string modelName, ModelType modelType)
         {
-            if (string.IsNullOrEmpty(modelName))
-                throw new ArgumentException("modelName must be set", nameof(modelName));
+            base.Init(modelName, modelType);
 
             try
             {
@@ -59,10 +58,11 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public List<ImageClassification> RecognizeImage(Bitmap bitmap)
+        private List<ImageClassification> RecognizeImage(Bitmap bitmap)
         {
             var outputNames = new[] { OutputName };
-            var floatValues = bitmap.GetBitmapPixels(InputSize, InputSize);
+            var floatValues = bitmap.GetBitmapPixels(InputSize, InputSize,
+                                                     ModelType.ImageMeanR(), ModelType.ImageMeanG(), ModelType.ImageMeanB());
             var outputs = new float[_labels.Count];
 
             _inferenceInterface.Feed(InputName, floatValues, 1, InputSize, InputSize, 3);

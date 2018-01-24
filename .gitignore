@@ -39,4 +39,4 @@ Thumbs.db
 # dotCover
 *.dotCover
 *.nupkg
-*.db
+**/*.db

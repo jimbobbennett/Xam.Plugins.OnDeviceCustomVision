@@ -4,12 +4,49 @@ namespace Xam.Plugins.OnDeviceCustomVision
 {
     public static class ImageExtensions
     {
-        private static readonly float ImageMeanR = 124.0f;
-        private static readonly float ImageMeanG = 117.0f;
-        private static readonly float ImageMeanB = 105.0f;
         private static readonly float ImageStd = 1.0f;
 
-        public static float[] GetBitmapPixels(this Bitmap bitmap, int width, int height)
+        public static float ImageMeanR(this ModelType modelType)
+        {
+            switch (modelType)
+            {
+                case ModelType.Retail:
+                    return 0.0f;
+                case ModelType.General:
+                case ModelType.Landscape:
+                default:
+                    return 123.0f;
+            }
+        }
+
+        public static float ImageMeanG(this ModelType modelType)
+        {
+            switch (modelType)
+            {
+                case ModelType.Retail:
+                    return 0.0f;
+                case ModelType.General:
+                case ModelType.Landscape:
+                default:
+                    return 117.0f;
+            }
+        }
+
+        public static float ImageMeanB(this ModelType modelType)
+        {
+            switch (modelType)
+            {
+                case ModelType.Retail:
+                    return 0.0f;
+                case ModelType.General:
+                case ModelType.Landscape:
+                default:
+                    return 104.0f;
+            }
+        }
+
+        public static float[] GetBitmapPixels(this Bitmap bitmap, int width, int height, 
+                                              float imageMeanR, float imageMeanG, float imageMeanB)
         {
             var floatValues = new float[width * height * 3];
 
@@ -24,9 +61,9 @@ namespace Xam.Plugins.OnDeviceCustomVision
                     {
                         var val = intValues[i];
 
-                        floatValues[i * 3 + 0] = ((val & 0xFF) - ImageMeanB) / ImageStd;
-                        floatValues[i * 3 + 1] = (((val >> 8) & 0xFF) - ImageMeanG) / ImageStd;
-                        floatValues[i * 3 + 2] = (((val >> 16) & 0xFF) - ImageMeanR) / ImageStd;
+                        floatValues[i * 3 + 0] = ((val & 0xFF) - imageMeanB) / ImageStd;
+                        floatValues[i * 3 + 1] = (((val >> 8) & 0xFF) - imageMeanG) / ImageStd;
+                        floatValues[i * 3 + 2] = (((val >> 16) & 0xFF) - imageMeanR) / ImageStd;
                     }
 
                     resizedBitmap.Recycle();

@@ -12,16 +12,19 @@ using Xam.Plugins.OnDeviceCustomVision.iOS;
 
 namespace Xam.Plugins.OnDeviceCustomVision
 {
-    public class ImageClassifierImplementation : IImageClassifier
+    public class ImageClassifierImplementation : ImageClassifierBase
     {
         private static readonly CGSize _targetImageSize = new CGSize(227, 227);
         private VNCoreMLModel _model;
 
         private VNCoreMLModel LoadModel(string modelName)
         {
-            var assetPath = NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodelc");
+            var modelPath = NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodelc") ?? CompileModel(modelName);
 
-            var mlModel = MLModel.Create(assetPath, out NSError err);
+            if (modelPath == null)
+                throw new ImageClassifierException($"Model {modelName} does not exist");
+
+            var mlModel = MLModel.Create(modelPath, out NSError err);
 
             if (err != null)
                 throw new NSErrorException(err);
@@ -32,6 +35,17 @@ namespace Xam.Plugins.OnDeviceCustomVision
                 throw new NSErrorException(err);
 
             return model;
+        }
+
+        private NSUrl CompileModel(string modelName)
+        {
+            var uncompiled = NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodel");
+            var modelPath = MLModel.CompileModel(uncompiled, out NSError err);
+
+            if (err != null)
+                throw new NSErrorException(err);
+
+            return modelPath;
         }
 
         private async Task<IReadOnlyList<ImageClassification>> Classify(UIImage source)
@@ -64,7 +78,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
                                   .AsReadOnly();
         }
 
-        public async Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream)
+        public override async Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream)
         {
             if (_model == null)
                 throw new ImageClassifierException("You must call Init before classifying images");
@@ -80,14 +94,13 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public void Init(string modelName)
+        public override void Init(string modelName, ModelType modelType)
         {
-            if (string.IsNullOrEmpty(modelName))
-                throw new ArgumentException("modelName must be set", nameof(modelName));
+            base.Init(modelName, modelType);
             
             try
             {
-                _model = LoadModel("ToyIdentifier");
+                _model = LoadModel(modelName);
             }
             catch (Exception ex)
             {
