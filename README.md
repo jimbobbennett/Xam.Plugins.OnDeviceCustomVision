@@ -94,4 +94,6 @@ tags.OrderByDescending(t => t.Probability)
     .First().Tag;
 ```
 
+##### Using with an IoC container
 
+`CrossImageClassifier.Current` returns an instance of the `IImageClassifier` interface, and this can be stored inside your IoC container and injected where required.
