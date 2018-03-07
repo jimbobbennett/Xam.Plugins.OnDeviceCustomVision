@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -35,6 +36,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
     public interface IImageClassifier
     {
         void Init(string modelName, ModelType modelType);
+        void Init(string modelName, ModelType modelType, int inputSize, string inputName, string outputName);
         Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream);
     }
 
@@ -42,6 +44,10 @@ namespace Xam.Plugins.OnDeviceCustomVision
     {
         protected string ModelName { get; private set; }
         protected ModelType ModelType { get; private set; }
+        
+        protected int InputSize { get; private set; }
+        protected string InputName { get; private set; }
+        protected string OutputName { get; private set; }
 
         public virtual void Init(string modelName, ModelType modelType)
         {
@@ -50,6 +56,19 @@ namespace Xam.Plugins.OnDeviceCustomVision
 
             ModelName = modelName;
             ModelType = modelType;
+        }
+        
+        public virtual void Init(string modelName, ModelType modelType, int inputSize, string inputName, string outputName)
+        {
+            if (string.IsNullOrEmpty(modelName))
+                throw new ArgumentException("modelName must be set", nameof(modelName));
+
+            ModelName = modelName;
+            ModelType = modelType;
+
+            InputSize = inputSize;
+            InputName = inputName;
+            OutputName = outputName;
         }
 
         public abstract Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream);
