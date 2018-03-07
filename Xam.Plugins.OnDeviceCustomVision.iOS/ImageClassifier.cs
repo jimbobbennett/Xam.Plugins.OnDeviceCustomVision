@@ -14,7 +14,6 @@ namespace Xam.Plugins.OnDeviceCustomVision
 {
     public class ImageClassifierImplementation : ImageClassifierBase
     {
-        private static readonly CGSize _targetImageSize = new CGSize(227, 227);
         private VNCoreMLModel _model;
 
         private VNCoreMLModel LoadModel(string modelName)
@@ -63,7 +62,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
                 }
             });
 
-            var buffer = source.ToCVPixelBuffer(_targetImageSize);
+            var buffer = source.ToCVPixelBuffer(new CGSize(InputSize, InputSize));
             var requestHandler = new VNImageRequestHandler(buffer, new NSDictionary());
 
             requestHandler.Perform(new[] { request }, out NSError error);
@@ -94,9 +93,9 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public override void Init(string modelName, ModelType modelType)
+        public override void Init(string modelName, ModelType modelType, int inputSize = 227)
         {
-            base.Init(modelName, modelType);
+            base.Init(modelName, modelType, inputSize);
             
             try
             {
