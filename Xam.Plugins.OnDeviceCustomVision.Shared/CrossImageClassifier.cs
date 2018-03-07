@@ -35,8 +35,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
 
     public interface IImageClassifier
     {
-        void Init(string modelName, ModelType modelType);
-        void Init(string modelName, ModelType modelType, int inputSize, string inputName, string outputName);
+        void Init(string modelName, ModelType modelType, int inputSize = 227, string inputName = "Placeholder", string outputName = "loss");
         Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream);
     }
 
