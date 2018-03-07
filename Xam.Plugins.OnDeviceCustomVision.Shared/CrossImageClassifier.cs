@@ -49,16 +49,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
         protected string InputName { get; private set; }
         protected string OutputName { get; private set; }
 
-        public virtual void Init(string modelName, ModelType modelType)
-        {
-            if (string.IsNullOrEmpty(modelName))
-                throw new ArgumentException("modelName must be set", nameof(modelName));
-
-            ModelName = modelName;
-            ModelType = modelType;
-        }
-        
-        public virtual void Init(string modelName, ModelType modelType, int inputSize, string inputName, string outputName)
+        public virtual void Init(string modelName, ModelType modelType, int inputSize = 227, string inputName = "Placeholder", string outputName = "loss")
         {
             if (string.IsNullOrEmpty(modelName))
                 throw new ArgumentException("modelName must be set", nameof(modelName));
