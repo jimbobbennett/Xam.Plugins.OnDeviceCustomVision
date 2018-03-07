@@ -13,10 +13,6 @@ namespace Xam.Plugins.OnDeviceCustomVision
         private List<string> _labels;
         private TensorFlowInferenceInterface _inferenceInterface;
 
-        private static readonly int InputSize = 227;
-        private static readonly string InputName = "Placeholder";
-        private static readonly string OutputName = "loss";
-
         public override async Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream)
         {
             if (_labels == null || !_labels.Any() || _inferenceInterface == null)
@@ -37,9 +33,9 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public override void Init(string modelName, ModelType modelType)
+        public override void Init(string modelName, ModelType modelType, int inputSize = 227, string inputName = "Placeholder", string outputName = "loss")
         {
-            base.Init(modelName, modelType);
+            base.Init(modelName, modelType, inputSize, inputName, outputName);
 
             try
             {
