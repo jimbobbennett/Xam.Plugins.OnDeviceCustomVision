@@ -9,11 +9,20 @@ using Org.Tensorflow.Contrib.Android;
 
 namespace Xam.Plugins.OnDeviceCustomVision
 {
+    public class AndroidImageClassifier : CrossImageClassifier
+    {
+        public static void Init(string modelName = "model.pb", string labelsFileName = "labels.txt", ModelType modelType = ModelType.General)
+        {
+            ((ImageClassifierImplementation)Current).Init(modelName, labelsFileName, modelType);
+        }
+    }
+
     public class ImageClassifierImplementation : ImageClassifierBase
     {
         private List<string> _labels;
         private TensorFlowInferenceInterface _inferenceInterface;
         private bool _hasNormalizationLayer;
+        private ModelType _modelType;
 
         private const int InputSize = 227;
         private const string InputName = "Placeholder";
@@ -40,14 +49,14 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public override void Init(string modelName, ModelType modelType)
+        internal void Init(string modelName, string labelsFileName, ModelType modelType)
         {
-            base.Init(modelName, modelType);
+            _modelType = modelType;
 
             try
             {
                 var assets = Android.App.Application.Context.Assets;
-                using (var sr = new StreamReader(assets.Open("labels.txt")))
+                using (var sr = new StreamReader(assets.Open(labelsFileName)))
                 {
                     var content = sr.ReadToEnd();
                     _labels = content.Split('\n').Select(s => s.Trim()).Where(s => !string.IsNullOrEmpty(s)).ToList();
@@ -74,9 +83,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
         private List<ImageClassification> RecognizeImage(Bitmap bitmap)
         {
             var outputNames = new[] { OutputName };
-            var floatValues = _hasNormalizationLayer ?
-                                bitmap.GetBitmapPixels(InputSize, InputSize) :
-                                bitmap.GetBitmapPixels(InputSize, InputSize, ModelType.ImageMeanR(), ModelType.ImageMeanG(), ModelType.ImageMeanB());
+            var floatValues = bitmap.GetBitmapPixels(InputSize, InputSize, _modelType, _hasNormalizationLayer);
             var outputs = new float[_labels.Count];
 
             _inferenceInterface.Feed(InputName, floatValues, 1, InputSize, InputSize, 3);

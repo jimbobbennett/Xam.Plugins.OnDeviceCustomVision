@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CurrencyRecogniser"
+             x:Class="CurrencyRecogniser.MainPage"
+             BackgroundColor="DarkSlateGray">
+    <ContentPage.BindingContext>
+        <local:MainViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Aspect="AspectFill" Source="{Binding Image}"/>
+        <Label Text="{Binding Tag}" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+        <Button Grid.Row="2" Text="Take Photo" BackgroundColor="Orange" TextColor="White" Command="{Binding TakePhotoCommand}" FontSize="Large" FontAttributes="Bold"/>
+    </Grid>    
+</ContentPage>

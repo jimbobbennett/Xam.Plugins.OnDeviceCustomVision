@@ -12,6 +12,14 @@ using Xam.Plugins.OnDeviceCustomVision.iOS;
 
 namespace Xam.Plugins.OnDeviceCustomVision
 {
+    public class iOSImageClassifier : CrossImageClassifier
+    {
+        public static void Init(string modelName)
+        {
+            ((ImageClassifierImplementation)Current).Init(modelName);
+        }
+    }
+
     public class ImageClassifierImplementation : ImageClassifierBase
     {
         private static readonly CGSize _targetImageSize = new CGSize(227, 227);
@@ -94,10 +102,8 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public override void Init(string modelName, ModelType modelType)
-        {
-            base.Init(modelName, modelType);
-            
+        internal void Init(string modelName)
+        {            
             try
             {
                 _model = LoadModel(modelName);

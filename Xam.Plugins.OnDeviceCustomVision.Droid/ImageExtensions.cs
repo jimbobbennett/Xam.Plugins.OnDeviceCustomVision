@@ -2,11 +2,18 @@
 
 namespace Xam.Plugins.OnDeviceCustomVision
 {
+    public enum ModelType
+    {
+        General,
+        Landscape,
+        Retail
+    }
+
     public static class ImageExtensions
     {
         private static readonly float ImageStd = 1.0f;
 
-        public static float ImageMeanR(this ModelType modelType)
+        private static float ImageMeanR(ModelType modelType)
         {
             switch (modelType)
             {
@@ -19,7 +26,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public static float ImageMeanG(this ModelType modelType)
+        private static float ImageMeanG(ModelType modelType)
         {
             switch (modelType)
             {
@@ -32,7 +39,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public static float ImageMeanB(this ModelType modelType)
+        private static float ImageMeanB(ModelType modelType)
         {
             switch (modelType)
             {
@@ -45,10 +52,12 @@ namespace Xam.Plugins.OnDeviceCustomVision
             }
         }
 
-        public static float[] GetBitmapPixels(this Bitmap bitmap, int width, int height, 
-                                              float imageMeanR = 0.0f, float imageMeanG = 0.0f, float imageMeanB = 0.0f)
+        public static float[] GetBitmapPixels(this Bitmap bitmap, int width, int height, ModelType modelType, bool hasNormalizationLayer)
         {
             var floatValues = new float[width * height * 3];
+            var imageMeanB = hasNormalizationLayer ? 0f : ImageMeanB(modelType);
+            var imageMeanG = hasNormalizationLayer ? 0f : ImageMeanG(modelType);
+            var imageMeanR = hasNormalizationLayer ? 0f : ImageMeanR(modelType);
 
             using (var scaledBitmap = Bitmap.CreateScaledBitmap(bitmap, width, height, false))
             {
