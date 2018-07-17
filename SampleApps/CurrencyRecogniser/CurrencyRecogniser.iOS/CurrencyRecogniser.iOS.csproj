@@ -161,14 +161,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Xam.Plugins.OnDeviceCustomVision.iOS\Xam.Plugins.OnDeviceCustomVision.iOS.csproj">
-      <Project>{2910106c-7ee9-445b-a4ad-6c543acf41ae}</Project>
-      <Name>Xam.Plugins.OnDeviceCustomVision.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-      <IsWatchApp>false</IsWatchApp>
+    <ProjectReference Include="..\..\..\Xam.Plugins.OnDeviceCustomVision\Xam.Plugins.OnDeviceCustomVision.csproj">
+      <Project>{dfea14a9-5f1a-48e5-b40a-820b02153597}</Project>
+      <Name>Xam.Plugins.OnDeviceCustomVision</Name>
     </ProjectReference>
     <ProjectReference Include="..\CurrencyRecogniser\CurrencyRecogniser.csproj">
-      <Project>{E8B430B7-D277-4436-8818-B4549C07A225}</Project>
+      <Project>{8e8b7cd0-2ce1-4442-8a14-80b4431d51a4}</Project>
       <Name>CurrencyRecogniser</Name>
     </ProjectReference>
   </ItemGroup>

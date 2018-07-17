@@ -97,12 +97,12 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Xam.Plugins.OnDeviceCustomVision.Droid\Xam.Plugins.OnDeviceCustomVision.Droid.csproj">
-      <Project>{9fda0172-09f3-43c1-9f84-8e8a74ab2e97}</Project>
-      <Name>Xam.Plugins.OnDeviceCustomVision.Droid</Name>
+    <ProjectReference Include="..\..\..\Xam.Plugins.OnDeviceCustomVision\Xam.Plugins.OnDeviceCustomVision.csproj">
+      <Project>{dfea14a9-5f1a-48e5-b40a-820b02153597}</Project>
+      <Name>Xam.Plugins.OnDeviceCustomVision</Name>
     </ProjectReference>
     <ProjectReference Include="..\CurrencyRecogniser\CurrencyRecogniser.csproj">
-      <Project>{E8B430B7-D277-4436-8818-B4549C07A225}</Project>
+      <Project>{8e8b7cd0-2ce1-4442-8a14-80b4431d51a4}</Project>
       <Name>CurrencyRecogniser</Name>
     </ProjectReference>
   </ItemGroup>

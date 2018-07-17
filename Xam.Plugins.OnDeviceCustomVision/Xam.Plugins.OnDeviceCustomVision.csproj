@@ -1,8 +1,66 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-  </PropertyGroup>
+    <!--Work around so the conditions work below-->
+    <TargetFrameworks></TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.16299</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;</TargetFrameworks>
+    <AssemblyName>Xam.Plugins.OnDeviceCustomVision</AssemblyName>
+    <RootNamespace>Xam.Plugins.OnDeviceCustomVision</RootNamespace>
+    <PackageId>Xam.Plugins.OnDeviceCustomVision</PackageId>
+    <Summary>Cross platform library that allows you to use models from the https://CustomVision.ai locally on the device</Summary>
+    <PackageTags>xamarin, image classification, AI, ML, custom vision, pcl, xam.pcl, plugin for xamarin, plugin, android, xamarin.forms, ios, monoandroid, monodroid, monotouch</PackageTags>
+    <Title>Plugin for running Custom Vision models on device in iOS,Android and UWP Xamarin apps</Title>
+    <Description> The Azure Custom Vision service (https://customvision.ai) is able to create models that can be exported as CoreML, Tensorflow or ONNX models to do image classification.
 
-  <Import Project="..\Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.projitems" Label="Shared" Condition="Exists('..\Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.projitems')" />
+      This plugin makes it easy to download and use these models offline from inside your mobile app, using CoreML on iOS, Tensorflow on Android or WinML on Windows.
+      These models can then be called from a .NET standard library, using something like Xam.Plugins.Media to take photos for classification.</Description>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>1.0.0</Version>
+    <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
+    <Authors>Jim Bennett</Authors>
+    <Owners>Jim Bennett</Owners>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryUrl>https://github.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision</RepositoryUrl>
+    <LangVersion>7.2</LangVersion>
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision</PackageProjectUrl>
+    <TargetPlatformVersion Condition="  $(TargetFramework.StartsWith('uap10.0')) ">10.0.17134.0</TargetPlatformVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
+    <Compile Include="**\*.shared.cs" />
+    <Compile Include="**\*.shared.*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+    <Compile Include="**\*.netstandard.cs" />
+    <Compile Include="**\*.netstandard.*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
+    <Compile Include="**\*.uwp.cs" />
+    <Compile Include="**\*.uwp.*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <PackageReference Include="Xam.Android.Tensorflow" Version="1.0.0" />
+    <Compile Include="**\*.android.cs" />
+    <Compile Include="**\*.android.*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**\*.ios.cs" />
+    <Compile Include="**\*.ios.*.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

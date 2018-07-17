@@ -34,25 +34,4 @@ namespace Xam.Plugins.OnDeviceCustomVision
     {
         public abstract Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream);
     }
-
-    public class CrossImageClassifier
-    {
-        protected CrossImageClassifier() { }
-
-#if !NETSTANDARD1_0
-        private static ImageClassifierImplementation _implementation;
-#endif
-
-        public static IImageClassifier Current
-        {
-            get
-            {
-#if NETSTANDARD1_0
-                throw new NotImplementedException("Please ensure you have install the Xam.Plugins.OnDeviceCustomVision NuGet package into your iOS, Android and UWP projects");
-#else
-                return _implementation ?? (_implementation = new ImageClassifierImplementation());
-#endif
-            }
-        }
-    }
 }
