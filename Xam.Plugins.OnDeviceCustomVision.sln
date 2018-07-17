@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugins.OnDeviceCustomVision", "Xam.Plugins.OnDeviceCustomVision\Xam.Plugins.OnDeviceCustomVision.csproj", "{DFEA14A9-5F1A-48E5-B40A-820B02153597}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TensorFlowXamarin", "TensorFlow.Xamarin.Android\TensorFlowXamarin\TensorFlowXamarin.csproj", "{1557F11A-244E-4DCF-BB90-B01C916E84E8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugins.OnDeviceCustomVision.Droid", "Xam.Plugins.OnDeviceCustomVision.Droid\Xam.Plugins.OnDeviceCustomVision.Droid.csproj", "{9FDA0172-09F3-43C1-9F84-8E8A74AB2E97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugins.OnDeviceCustomVision.iOS", "Xam.Plugins.OnDeviceCustomVision.iOS\Xam.Plugins.OnDeviceCustomVision.iOS.csproj", "{2910106C-7EE9-445B-A4AD-6C543ACF41AE}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xam.Plugins.OnDeviceCustomVision.Shared", "Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.shproj", "{B3F85494-A9F5-4A3A-BE59-39E6A311FA55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleProjects", "SampleProjects", "{BEBAD4AA-7BD1-42D4-8469-7BF8AA18A7D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +33,6 @@ Global
 		{DFEA14A9-5F1A-48E5-B40A-820B02153597}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{DFEA14A9-5F1A-48E5-B40A-820B02153597}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{DFEA14A9-5F1A-48E5-B40A-820B02153597}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Release|iPhone.Build.0 = Release|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{1557F11A-244E-4DCF-BB90-B01C916E84E8}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{9FDA0172-09F3-43C1-9F84-8E8A74AB2E97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FDA0172-09F3-43C1-9F84-8E8A74AB2E97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FDA0172-09F3-43C1-9F84-8E8A74AB2E97}.Release|Any CPU.ActiveCfg = Release|Any CPU

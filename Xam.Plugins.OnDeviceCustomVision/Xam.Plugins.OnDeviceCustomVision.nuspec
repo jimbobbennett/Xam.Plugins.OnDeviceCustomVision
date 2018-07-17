@@ -19,14 +19,18 @@
     <tags>xamarin, image classification, AI, ML, custom vision, pcl, xam.pcl, plugin for xamarin, plugin, android, xamarin.forms, ios, monoandroid, monodroid, monotouch</tags>
 
   </metadata>
-
+  <dependencies>
+   <group targetFramework="MonoAndroid81">
+        <dependency id="Xam.Android.Tensorflow" version="1.0.0"/>
+      </group>
+</dependencies>
   <files>
     <!--NetStandard-->
     <file src="../Xam.Plugins.OnDeviceCustomVision/bin/Release/netstandard1.0/Xam.Plugins.OnDeviceCustomVision.dll" target="lib/netstandard1.0" />
     
     <!--Xamarin.Android-->
-    <file src="../Xam.Plugins.OnDeviceCustomVision.Droid/bin/Release/Xam.Plugins.OnDeviceCustomVision.dll" target="lib/MonoAndroid10" />
-    <file src="../Xam.Plugins.OnDeviceCustomVision.Droid/bin/Release/TensorFlowXamarin.dll" target="lib/MonoAndroid10" />
+    <file src="../Xam.Plugins.OnDeviceCustomVision.Droid/bin/Release/Xam.Plugins.OnDeviceCustomVision.dll" target="lib/MonoAndroid81" />
+    <file src="../Xam.Plugins.OnDeviceCustomVision.Droid/bin/Release/TensorFlowXamarin.dll" target="lib/MonoAndroid81" />
     
     <!--Xamarin.iOS -->
     <file src="../Xam.Plugins.OnDeviceCustomVision.iOS/bin/Release/Xam.Plugins.OnDeviceCustomVision.dll" target="lib/Xamarin.iOS10" />
