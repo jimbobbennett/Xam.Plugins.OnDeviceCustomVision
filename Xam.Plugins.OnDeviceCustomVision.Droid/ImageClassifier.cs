@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Graphics;
+using Org.Tensorflow;
 using Org.Tensorflow.Contrib.Android;
 
 namespace Xam.Plugins.OnDeviceCustomVision
@@ -12,10 +13,12 @@ namespace Xam.Plugins.OnDeviceCustomVision
     {
         private List<string> _labels;
         private TensorFlowInferenceInterface _inferenceInterface;
+        private bool _hasNormalizationLayer;
 
-        private static readonly int InputSize = 227;
-        private static readonly string InputName = "Placeholder";
-        private static readonly string OutputName = "loss";
+        private const int InputSize = 227;
+        private const string InputName = "Placeholder";
+        private const string OutputName = "loss";
+        private const string DataNormLayerPrefix = "data_bn";
 
         public override async Task<IReadOnlyList<ImageClassification>> ClassifyImage(Stream imageStream)
         {
@@ -51,6 +54,16 @@ namespace Xam.Plugins.OnDeviceCustomVision
                 }
 
                 _inferenceInterface = new TensorFlowInferenceInterface(assets, modelName);
+
+                var iter = _inferenceInterface.Graph().Operations();
+                while (iter.HasNext && !_hasNormalizationLayer)
+                {
+                    var op = iter.Next() as Operation;
+                    if (op.Name().Contains(DataNormLayerPrefix))
+                    {
+                        _hasNormalizationLayer = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -61,8 +74,9 @@ namespace Xam.Plugins.OnDeviceCustomVision
         private List<ImageClassification> RecognizeImage(Bitmap bitmap)
         {
             var outputNames = new[] { OutputName };
-            var floatValues = bitmap.GetBitmapPixels(InputSize, InputSize,
-                                                     ModelType.ImageMeanR(), ModelType.ImageMeanG(), ModelType.ImageMeanB());
+            var floatValues = _hasNormalizationLayer ?
+                                bitmap.GetBitmapPixels(InputSize, InputSize) :
+                                bitmap.GetBitmapPixels(InputSize, InputSize, ModelType.ImageMeanR(), ModelType.ImageMeanG(), ModelType.ImageMeanB());
             var outputs = new float[_labels.Count];
 
             _inferenceInterface.Feed(InputName, floatValues, 1, InputSize, InputSize, 3);

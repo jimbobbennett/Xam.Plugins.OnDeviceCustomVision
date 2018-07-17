@@ -1,3 +1,0 @@
-[submodule "TensorFlow.Xamarin.Android"]
-	path = TensorFlow.Xamarin.Android
-	url = git@github.com:jimbobbennett/TensorFlow.Xamarin.Android.git

@@ -46,7 +46,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
         }
 
         public static float[] GetBitmapPixels(this Bitmap bitmap, int width, int height, 
-                                              float imageMeanR, float imageMeanG, float imageMeanB)
+                                              float imageMeanR = 0.0f, float imageMeanG = 0.0f, float imageMeanB = 0.0f)
         {
             var floatValues = new float[width * height * 3];
 

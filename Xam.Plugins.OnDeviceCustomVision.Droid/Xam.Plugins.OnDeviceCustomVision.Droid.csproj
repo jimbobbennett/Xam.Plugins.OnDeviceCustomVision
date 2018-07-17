@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Xam.Plugins.OnDeviceCustomVision</RootNamespace>
     <AssemblyName>Xam.Plugins.OnDeviceCustomVision</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -41,8 +41,9 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="TensorFlowXamarin">
-      <HintPath>..\TensorFlow.Xamarin.Android\TensorFlowXamarin\bin\$(Configuration)\TensorFlowXamarin.dll</HintPath>
+      <HintPath>..\packages\Xam.Android.Tensorflow.1.0.0\lib\monoandroid81\TensorFlowXamarin.dll</HintPath>
     </Reference>
+    <Reference Include="Java.Interop" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -52,15 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TensorFlow.Xamarin.Android\TensorFlowXamarin\TensorFlowXamarin.csproj">
-      <Project>{1557F11A-244E-4DCF-BB90-B01C916E84E8}</Project>
-      <Name>TensorFlowXamarin</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.projitems" Label="Shared" Condition="Exists('..\Xam.Plugins.OnDeviceCustomVision.Shared\Xam.Plugins.OnDeviceCustomVision.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
