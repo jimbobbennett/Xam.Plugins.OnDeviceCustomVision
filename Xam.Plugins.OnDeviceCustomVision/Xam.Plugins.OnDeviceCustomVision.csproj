@@ -2,7 +2,7 @@
   <PropertyGroup>
     <!--Work around so the conditions work below-->
     <TargetFrameworks></TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.16299</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.17134</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;</TargetFrameworks>
     <AssemblyName>Xam.Plugins.OnDeviceCustomVision</AssemblyName>
     <RootNamespace>Xam.Plugins.OnDeviceCustomVision</RootNamespace>
@@ -10,14 +10,15 @@
     <Summary>Cross platform library that allows you to use models from the https://CustomVision.ai locally on the device</Summary>
     <PackageTags>xamarin, image classification, AI, ML, custom vision, pcl, xam.pcl, plugin for xamarin, plugin, android, xamarin.forms, ios, monoandroid, monodroid, monotouch</PackageTags>
     <Title>Plugin for running Custom Vision models on device in iOS,Android and UWP Xamarin apps</Title>
-    <Description> The Azure Custom Vision service (https://customvision.ai) is able to create models that can be exported as CoreML, Tensorflow or ONNX models to do image classification.
+    <Description>The Azure Custom Vision service (https://customvision.ai) is able to create models that can be exported as CoreML, Tensorflow or ONNX models to do image classification.
 
-      This plugin makes it easy to download and use these models offline from inside your mobile app, using CoreML on iOS, Tensorflow on Android or WinML on Windows.
-      These models can then be called from a .NET standard library, using something like Xam.Plugins.Media to take photos for classification.</Description>
+This plugin makes it easy to download and use these models offline from inside your mobile app, using CoreML on iOS, Tensorflow on Android or WinML on Windows.
+
+These models can then be called from a .NET standard library, using something like Xam.Plugins.Media to take photos for classification.</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <Authors>Jim Bennett</Authors>
     <Owners>Jim Bennett</Owners>
@@ -31,6 +32,9 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision</PackageProjectUrl>
     <TargetPlatformVersion Condition="  $(TargetFramework.StartsWith('uap10.0')) ">10.0.17134.0</TargetPlatformVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReleaseNotes>* Added support for ONNX models in UWP apps.
+* Handles the updates to the image color adjustments in models post 7th May 2018</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
     <DebugType>full</DebugType>
