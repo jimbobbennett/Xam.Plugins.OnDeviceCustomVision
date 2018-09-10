@@ -80,7 +80,7 @@ using Xam.Plugins.OnDeviceCustomVision;
 protected override void OnCreate(Bundle savedInstanceState)
 {
    ...
-   AndroidImageClassifier.Current.Init("model.pb", "labels.txt", ModelType.General);
+   AndroidImageClassifier.Init("model.pb", "labels.txt", ModelType.General);
 }
 ```
 
