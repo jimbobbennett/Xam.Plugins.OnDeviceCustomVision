@@ -24,7 +24,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
         private bool _hasNormalizationLayer;
         private ModelType _modelType;
 
-        private const int InputSize = 227;
+        private static int InputSize = 227;
         private const string InputName = "Placeholder";
         private const string OutputName = "loss";
         private const string DataNormLayerPrefix = "data_bn";
@@ -63,7 +63,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
                 }
 
                 _inferenceInterface = new TensorFlowInferenceInterface(assets, modelName);
-
+                InputSize = Convert.ToInt32(_inferenceInterface.GraphOperation(InputName).Output(0).Shape().Size(1));
                 var iter = _inferenceInterface.Graph().Operations();
                 while (iter.HasNext && !_hasNormalizationLayer)
                 {
