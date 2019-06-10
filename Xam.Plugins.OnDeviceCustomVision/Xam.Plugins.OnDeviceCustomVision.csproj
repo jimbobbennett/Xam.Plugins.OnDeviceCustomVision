@@ -18,7 +18,7 @@ These models can then be called from a .NET standard library, using something li
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>2.0.0</Version>
+    <Version>2.1.1</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <Authors>Jim Bennett</Authors>
     <Owners>Jim Bennett</Owners>
@@ -28,13 +28,13 @@ These models can then be called from a .NET standard library, using something li
     <DefineConstants>$(DefineConstants);</DefineConstants>
     <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision</PackageProjectUrl>
     <TargetPlatformVersion Condition="  $(TargetFramework.StartsWith('uap10.0')) ">10.0.17134.0</TargetPlatformVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>* Added support for ONNX models in UWP apps.
 * Handles the updates to the image color adjustments in models post 7th May 2018</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
     <DebugType>full</DebugType>
