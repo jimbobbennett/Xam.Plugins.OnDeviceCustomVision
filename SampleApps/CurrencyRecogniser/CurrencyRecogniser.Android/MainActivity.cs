@@ -8,12 +8,17 @@ using Android.Widget;
 using Android.OS;
 using Plugin.CurrentActivity;
 using Xam.Plugins.OnDeviceCustomVision;
+using System.IO;
 
 namespace CurrencyRecogniser.Droid
 {
     [Activity(Label = "CurrencyRecogniser", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        readonly string labels = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "labels.txt");
+        readonly string model = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "model.pb");
+
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -22,10 +27,32 @@ namespace CurrencyRecogniser.Droid
             base.OnCreate(bundle);
 
             CrossCurrentActivity.Current.Init(this, bundle);
-            AndroidImageClassifier.Init();
+
+            CopyModelToApplicationFolder();
+
+            AndroidImageClassifier.Init(model, labels);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+        }
+
+        private void CopyModelToApplicationFolder()
+        {
+            var assets = Application.Context.Assets;
+
+            if (!File.Exists(labels))
+            {
+                using (var sr = assets.Open("labels.txt"))
+                using (var fileStream = new FileStream(labels, FileMode.Create, FileAccess.Write))
+                    sr.CopyTo(fileStream);
+            }
+
+            if (!File.Exists(model))
+            {
+                using (var sr = assets.Open("model.pb"))
+                using (var fileStream = new FileStream(labels, FileMode.Create, FileAccess.Write))
+                    sr.CopyTo(fileStream);
+            }
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
