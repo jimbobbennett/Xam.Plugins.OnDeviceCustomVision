@@ -40,11 +40,6 @@ namespace CurrencyRecogniser.Droid
         {
             var assets = Application.Context.Assets;
 
-            if (File.Exists(labels))
-            {
-                File.Delete(labels);
-            }
-
             if (!File.Exists(labels))
             {
                 using (var sr = assets.Open("labels.txt"))
