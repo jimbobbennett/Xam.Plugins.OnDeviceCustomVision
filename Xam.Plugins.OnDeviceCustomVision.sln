@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleApps", "SampleApps", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CurrencyRecogniser", "CurrencyRecogniser", "{8456959F-C260-43A4-A899-2E493A51F388}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyRecogniser", "SampleApps\CurrencyRecogniser\CurrencyRecogniser\CurrencyRecogniser.csproj", "{8E8B7CD0-2CE1-4442-8A14-80B4431D51A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRecogniser", "SampleApps\CurrencyRecogniser\CurrencyRecogniser\CurrencyRecogniser.csproj", "{8E8B7CD0-2CE1-4442-8A14-80B4431D51A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRecogniser.Android", "SampleApps\CurrencyRecogniser\CurrencyRecogniser.Android\CurrencyRecogniser.Android.csproj", "{D3E03A3A-8CF7-4D33-B033-5D6B0D9B392D}"
 EndProject

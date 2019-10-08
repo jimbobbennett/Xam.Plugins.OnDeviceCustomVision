@@ -40,17 +40,22 @@ namespace CurrencyRecogniser.Droid
         {
             var assets = Application.Context.Assets;
 
+            if (File.Exists(labels))
+            {
+                File.Delete(labels);
+            }
+
             if (!File.Exists(labels))
             {
                 using (var sr = assets.Open("labels.txt"))
-                using (var fileStream = new FileStream(labels, FileMode.Create, FileAccess.Write))
+                using (var fileStream = File.OpenWrite(labels))
                     sr.CopyTo(fileStream);
             }
 
             if (!File.Exists(model))
             {
                 using (var sr = assets.Open("model.pb"))
-                using (var fileStream = new FileStream(labels, FileMode.Create, FileAccess.Write))
+                using (var fileStream = File.OpenWrite(model))
                     sr.CopyTo(fileStream);
             }
         }
