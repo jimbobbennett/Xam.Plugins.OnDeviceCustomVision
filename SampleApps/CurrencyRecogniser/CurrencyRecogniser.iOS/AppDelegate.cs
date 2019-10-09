@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using Foundation;
@@ -14,6 +15,8 @@ namespace CurrencyRecogniser.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+        readonly string model = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Currency.mlmodel");
+
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -23,11 +26,26 @@ namespace CurrencyRecogniser.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            iOSImageClassifier.Init("Currency");
+            CopyModelToApplicationFolder();
+
+            iOSImageClassifier.Init(model);
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
+
+
             return base.FinishedLaunching(app, options);
+        }
+
+        private void CopyModelToApplicationFolder()
+        {
+            if (!File.Exists(model))
+            {
+                var uncompiled = NSBundle.MainBundle.GetUrlForResource("Currency", "mlmodel");
+                using (var sr = File.OpenRead(uncompiled.Path))
+                using (var fileStream = File.OpenWrite(model))
+                    sr.CopyTo(fileStream);
+            }
         }
     }
 }

@@ -27,7 +27,13 @@ namespace Xam.Plugins.OnDeviceCustomVision
 
         private VNCoreMLModel LoadModel(string modelName)
         {
-            var modelPath = NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodelc") ?? CompileModel(modelName);
+            var isPath = File.Exists(modelName);
+            var isCompiled = Path.GetExtension(modelName).Equals("mlmodelc");
+            NSUrl modelPath = isCompiled
+                ? (isPath
+                    ? new NSUrl(modelName, false)
+                    : NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodelc"))
+                : CompileModel(modelName, isPath);
 
             if (modelPath == null)
                 throw new ImageClassifierException($"Model {modelName} does not exist");
@@ -45,9 +51,9 @@ namespace Xam.Plugins.OnDeviceCustomVision
             return model;
         }
 
-        private NSUrl CompileModel(string modelName)
+        private NSUrl CompileModel(string modelName, bool isPath)
         {
-            var uncompiled = NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodel");
+            var uncompiled = isPath? new NSUrl(modelName, false) : NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodel");
             var modelPath = MLModel.CompileModel(uncompiled, out NSError err);
 
             if (err != null)
