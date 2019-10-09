@@ -15,6 +15,7 @@ namespace CurrencyRecogniser.Droid
     [Activity(Label = "CurrencyRecogniser", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        bool useFilesForTheModel = false;
         readonly string labels = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "labels.txt");
         readonly string model = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "model.pb");
 
@@ -28,9 +29,16 @@ namespace CurrencyRecogniser.Droid
 
             CrossCurrentActivity.Current.Init(this, bundle);
 
-            CopyModelToApplicationFolder();
-
-            AndroidImageClassifier.Init(model, labels);
+            if (useFilesForTheModel)
+            {
+                CopyModelToApplicationFolder();
+                AndroidImageClassifier.Init(model, labels);
+            }
+            else
+            {
+                AndroidImageClassifier.Init();
+            }
+                
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());

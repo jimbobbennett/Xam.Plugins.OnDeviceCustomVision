@@ -15,6 +15,7 @@ namespace CurrencyRecogniser.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+        bool useFilesForTheModel = false;
         readonly string model = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Currency.mlmodel");
 
         //
@@ -26,9 +27,16 @@ namespace CurrencyRecogniser.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            CopyModelToApplicationFolder();
-
-            iOSImageClassifier.Init(model);
+            if (useFilesForTheModel)
+            {
+                CopyModelToApplicationFolder();
+                iOSImageClassifier.Init(model);
+            }
+            else
+            {
+                iOSImageClassifier.Init("Currency");
+            }
+            
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
