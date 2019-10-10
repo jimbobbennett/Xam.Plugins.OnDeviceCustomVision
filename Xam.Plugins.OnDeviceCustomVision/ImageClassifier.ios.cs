@@ -29,11 +29,15 @@ namespace Xam.Plugins.OnDeviceCustomVision
         {
             var isPath = File.Exists(modelName);
             var isCompiled = Path.GetExtension(modelName).Equals("mlmodelc");
-            NSUrl modelPath = isCompiled
-                ? (isPath
-                    ? new NSUrl(modelName, false)
-                    : NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodelc"))
-                : CompileModel(modelName, isPath);
+            NSUrl modelPath = null;
+
+            if (isCompiled)
+                if (isPath)
+                    modelPath = new NSUrl(modelName, false);
+                else
+                    modelPath = NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodelc");
+            else
+                CompileModel(modelName, isPath);
 
             if (modelPath == null)
                 throw new ImageClassifierException($"Model {modelName} does not exist");
