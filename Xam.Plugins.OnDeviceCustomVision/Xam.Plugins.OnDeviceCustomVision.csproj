@@ -18,7 +18,7 @@ These models can then be called from a .NET standard library, using something li
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>2.1.1</Version>
+    <Version>2.2.1</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <Authors>Jim Bennett</Authors>
     <Owners>Jim Bennett</Owners>
