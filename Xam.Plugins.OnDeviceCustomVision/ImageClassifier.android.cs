@@ -56,7 +56,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
             try
             {
                 var assets = Android.App.Application.Context.Assets;
-                using (var sr = new StreamReader(assets.Open(labelsFileName)))
+                using (var sr = new StreamReader( File.Exists(labelsFileName)? File.OpenRead(labelsFileName) : assets.Open(labelsFileName)))
                 {
                     var content = sr.ReadToEnd();
                     _labels = content.Split('\n').Select(s => s.Trim()).Where(s => !string.IsNullOrEmpty(s)).ToList();
