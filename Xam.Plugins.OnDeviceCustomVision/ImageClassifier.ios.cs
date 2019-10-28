@@ -37,7 +37,7 @@ namespace Xam.Plugins.OnDeviceCustomVision
                 else
                     modelPath = NSBundle.MainBundle.GetUrlForResource(modelName, "mlmodelc");
             else
-                CompileModel(modelName, isPath);
+                modelPath = CompileModel(modelName, isPath);
 
             if (modelPath == null)
                 throw new ImageClassifierException($"Model {modelName} does not exist");
